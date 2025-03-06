@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { _ } from 'svelte-i18n';
+  import { _ } from '$lib/i18n';
+  import { path } from '$lib/utils/path';
 </script>
 
 <svelte:head>
-  <title>{$_('app.title')} - {$_('nav.custom')}</title>
+  <title>Knock Out MDE - {$_('nav.custom')}</title>
 </svelte:head>
 
 <section class="py-12 bg-zinc-900 text-white">
@@ -56,7 +57,7 @@
       Ready to create your unique boxing apparel? Contact us to schedule a consultation or request more information.
     </p>
     
-    <a href="/contact" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+    <a href={path('/contact/')} class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
       Start Your Custom Design
     </a>
   </div>
