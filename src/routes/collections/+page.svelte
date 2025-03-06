@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { _ } from 'svelte-i18n';
+  import { _ } from '$lib/i18n';
+  import { path } from '$lib/utils/path';
 </script>
 
 <svelte:head>
-  <title>{$_('app.title')} - {$_('nav.collections')}</title>
+  <title>Knock Out MDE - {$_('nav.collections')}</title>
 </svelte:head>
 
 <section class="py-12 bg-zinc-900 text-white">
@@ -30,7 +31,7 @@
           <p class="text-gray-600 mb-4">Professional-grade apparel designed for champions. Featuring premium materials and bold designs for fighters who demand excellence.</p>
           <div class="flex justify-between items-center">
             <span class="text-red-600 font-semibold">$180 - $450</span>
-            <a href="/collections/championship" class="text-red-600 hover:text-red-800 font-medium">View Collection →</a>
+            <a href={path('/collections/championship/')} class="text-red-600 hover:text-red-800 font-medium">View Collection →</a>
           </div>
         </div>
       </div>
@@ -47,7 +48,7 @@
           <p class="text-gray-600 mb-4">Street-inspired designs with Colombian urban flair. Bold graphics and comfortable cuts make this collection perfect for training and streetwear.</p>
           <div class="flex justify-between items-center">
             <span class="text-red-600 font-semibold">$75 - $220</span>
-            <a href="/collections/urban" class="text-red-600 hover:text-red-800 font-medium">View Collection →</a>
+            <a href={path('/collections/urban/')} class="text-red-600 hover:text-red-800 font-medium">View Collection →</a>
           </div>
         </div>
       </div>
@@ -64,7 +65,7 @@
           <p class="text-gray-600 mb-4">One-of-a-kind designs created for elite fighters. Get inspired by our previous custom creations for your own unique design.</p>
           <div class="flex justify-between items-center">
             <span class="text-red-600 font-semibold">Custom Pricing</span>
-            <a href="/collections/custom" class="text-red-600 hover:text-red-800 font-medium">View Collection →</a>
+            <a href={path('/collections/custom/')} class="text-red-600 hover:text-red-800 font-medium">View Collection →</a>
           </div>
         </div>
       </div>
@@ -140,7 +141,7 @@
   <div class="max-w-4xl mx-auto px-4 text-center">
     <h2 class="text-3xl font-bold mb-6">Create Your Custom Design</h2>
     <p class="text-xl mb-8">Can't find exactly what you're looking for? Let us create something unique just for you.</p>
-    <a href="/custom" class="inline-block bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 text-lg">
+    <a href={path('/custom/')} class="inline-block bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 text-lg">
       Custom Design Services
     </a>
   </div>
