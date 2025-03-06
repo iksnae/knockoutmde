@@ -1,42 +1,53 @@
 import { browser } from '$app/environment';
 import { init, register, locale, _ } from 'svelte-i18n';
-import { derived, writable } from 'svelte/store';
 
-// Register locales
-register('en', () => import('./locales/en.json'));
 register('es', () => import('./locales/es.json'));
+register('en', () => import('./locales/en.json'));
 
-export const defaultLocale = 'en';
-export const initialLocale = defaultLocale;
+export const defaultLocale = 'es';
 
-// Create a loading state to track when i18n is ready
-export const isLocaleLoaded = writable(false);
-
-// Initialize i18n
-export function setupI18n() {
-  // Set the initial locale
-  locale.set(initialLocale);
-
+/**
+ * Creates a proper URL path with the base path prepended
+ * @param {string} path - The path to navigate to, without the base
+ * @returns {string} - The full path including the base
+ */
+// Function to setup i18n
+function setupI18n() {
   init({
     fallbackLocale: defaultLocale,
-    initialLocale
+    initialLocale: browser ? getPreferredLocale() : defaultLocale
   });
+}
 
-  // Mark as loaded after initialization
-  isLocaleLoaded.set(true);
+// Get preferred locale with Spanish as default
+function getPreferredLocale() {
+  // Default to Spanish
+  if (!browser) return defaultLocale;
+
+  const storedLocale = localStorage.getItem('preferred-locale');
+  if (storedLocale) return storedLocale;
+
+  // Check for browser language preference, but default to Spanish if not Spanish or English
+  const browserLang = window.navigator.language.split('-')[0];
+  if (browserLang === 'en') return browserLang;
+  
+  // For all other cases, default to Spanish
+  return defaultLocale;
 }
 
 // Initialize immediately
 setupI18n();
 
 // Create a derived store that only returns the message if locale is loaded
-export const t = derived(
-  [_, isLocaleLoaded],
-  ([$_, $isLocaleLoaded], set) => {
-    if ($isLocaleLoaded) {
-      set($_);
+export const isLocaleLoaded = writable(true);
+
+export function startClient() {
+  // Set the locale persistently when changed
+  locale.subscribe((newLocale) => {
+    if (browser && newLocale) {
+      localStorage.setItem('preferred-locale', newLocale);
     }
-  }
-);
+  });
+}
 
 export { _, locale };
