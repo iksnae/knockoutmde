@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { _ } from 'svelte-i18n';
+  import { _ } from '$lib/i18n';
+  import { path } from '$lib/utils/path';
 </script>
 
 <svelte:head>
-  <title>{$_('app.title')} - {$_('nav.contact')}</title>
+  <title>Knock Out MDE - {$_('nav.contact')}</title>
 </svelte:head>
 
 <section class="py-12 bg-zinc-900 text-white">
