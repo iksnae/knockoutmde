@@ -1,17 +1,18 @@
 import { browser } from '$app/environment';
 import { init, register, locale, _ } from 'svelte-i18n';
+import { writable } from 'svelte/store';
 
 register('es', () => import('./locales/es.json'));
 register('en', () => import('./locales/en.json'));
 
 export const defaultLocale = 'es';
 
+// Create a loading state to track when i18n is ready
+export const isLocaleLoaded = writable(true);
+
 /**
- * Creates a proper URL path with the base path prepended
- * @param {string} path - The path to navigate to, without the base
- * @returns {string} - The full path including the base
+ * Function to setup i18n
  */
-// Function to setup i18n
 function setupI18n() {
   init({
     fallbackLocale: defaultLocale,
@@ -19,7 +20,9 @@ function setupI18n() {
   });
 }
 
-// Get preferred locale with Spanish as default
+/**
+ * Get preferred locale with Spanish as default
+ */
 function getPreferredLocale() {
   // Default to Spanish
   if (!browser) return defaultLocale;
@@ -38,9 +41,9 @@ function getPreferredLocale() {
 // Initialize immediately
 setupI18n();
 
-// Create a derived store that only returns the message if locale is loaded
-export const isLocaleLoaded = writable(true);
-
+/**
+ * Sets up client-side locale handling and persistence
+ */
 export function startClient() {
   // Set the locale persistently when changed
   locale.subscribe((newLocale) => {
