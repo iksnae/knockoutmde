@@ -9,11 +9,6 @@
   onMount(() => {
     // Initialize i18n client-side features
     startClient();
-    
-    // Explicitly set the default locale (Spanish) if no stored preference
-    if (!localStorage.getItem('preferred-locale')) {
-      locale.set(defaultLocale);
-    }
   });
 </script>
 
