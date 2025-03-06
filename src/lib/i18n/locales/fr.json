@@ -1,0 +1,22 @@
+{
+  "app": {
+    "title": "KnockoutMDE",
+    "description": "Un projet SvelteKit 2 + Svelte 5 avec Tailwind CSS et support de localisation"
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos"
+  },
+  "home": {
+    "welcome": "Bienvenue sur KnockoutMDE",
+    "description": "Une application web moderne construite avec SvelteKit 2 et Svelte 5"
+  },
+  "about": {
+    "title": "À propos de KnockoutMDE",
+    "description": "KnockoutMDE est un framework d'application web moderne, puissant et flexible."
+  },
+  "buttons": {
+    "learnMore": "En savoir plus",
+    "getStarted": "Commencer"
+  }
+}
