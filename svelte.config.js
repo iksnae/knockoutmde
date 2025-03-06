@@ -16,6 +16,17 @@ const config = {
       // Set the correct base path for GitHub Pages
       base: process.env.NODE_ENV === 'production' ? '/knockoutmde' : '',
       relative: false
+    },
+    prerender: {
+      handleHttpError: ({ path, referrer, message }) => {
+        // Ignore path errors during prerendering
+        if (path.startsWith('/')) {
+          return;
+        }
+        
+        // Otherwise, throw the error
+        throw new Error(message);
+      }
     }
   }
 };
