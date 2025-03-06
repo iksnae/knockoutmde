@@ -1,26 +1,38 @@
 <script lang="ts">
-  import { _ } from 'svelte-i18n';
+  import { t } from '$lib/i18n';
 </script>
 
 <svelte:head>
-  <title>{$_('app.title')} - {$_('nav.about')}</title>
-  <meta name="description" content={$_('about.description')} />
+  <title>Knock Out MDE - About</title>
+  <meta name="description" content="Learn about Knock Out MDE, a premium boxing apparel company from Medellín" />
 </svelte:head>
 
 <section class="py-12 bg-zinc-100">
   <div class="max-w-4xl mx-auto px-4">
-    <h1 class="text-4xl font-bold mb-8 text-zinc-900">{$_('about.title')}</h1>
-    <p class="text-lg text-gray-700 mb-8">{$_('about.description')}</p>
+    <h1 class="text-4xl font-bold mb-8 text-zinc-900">
+      {$t ? $t('about.title') : 'About Knock Out MDE'}
+    </h1>
+    <p class="text-lg text-gray-700 mb-8">
+      {$t ? $t('about.description') : 'Founded in Medellín, Knock Out MDE specializes in creating unique, high-quality boxing apparel and costume designs tailored to each fighter\'s personality and style.'}
+    </p>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
       <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-semibold mb-4 text-red-600">{$_('about.craft')}</h2>
-        <p class="text-gray-700">{$_('about.craftText')}</p>
+        <h2 class="text-2xl font-semibold mb-4 text-red-600">
+          {$t ? $t('about.craft') : 'Our Craft'}
+        </h2>
+        <p class="text-gray-700">
+          {$t ? $t('about.craftText') : 'We combine traditional craftsmanship with innovative design to create striking, durable apparel that stands out in the ring.'}
+        </p>
       </div>
       
       <div class="bg-white p-6 rounded-lg shadow-md">
-        <h2 class="text-2xl font-semibold mb-4 text-red-600">{$_('about.heritage')}</h2>
-        <p class="text-gray-700">{$_('about.heritageText')}</p>
+        <h2 class="text-2xl font-semibold mb-4 text-red-600">
+          {$t ? $t('about.heritage') : 'Colombian Heritage'}
+        </h2>
+        <p class="text-gray-700">
+          {$t ? $t('about.heritageText') : 'Our designs draw inspiration from Colombia\'s rich cultural heritage and Medellín\'s vibrant art scene.'}
+        </p>
       </div>
     </div>
   </div>
@@ -90,7 +102,7 @@
     <h2 class="text-3xl font-bold mb-6">Ready to Create Your Custom Design?</h2>
     <p class="text-xl mb-8">Let us help you stand out in the ring with a unique, handcrafted design.</p>
     <a href="/contact" class="inline-block bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 text-lg">
-      {$_('buttons.contact')}
+      {$t ? $t('buttons.contact') : 'Get in Touch'}
     </a>
   </div>
 </section>
