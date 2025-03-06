@@ -26,6 +26,10 @@ jobs:
         with:
           node-version: "20"
       
+      - name: Remove problematic files
+        run: |
+          rm -f src/routes/+layout.ts
+      
       - name: Install dependencies
         run: npm install
       
