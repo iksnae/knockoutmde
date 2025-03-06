@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { _ } from 'svelte-i18n';
+  import { t } from '$lib/i18n';
   import LanguageSwitcher from './LanguageSwitcher.svelte';
 </script>
 
@@ -13,11 +13,11 @@
     </div>
     
     <nav class="hidden md:flex space-x-6">
-      <a href="/" class="text-white hover:text-red-400 transition-colors">{$_('nav.home')}</a>
-      <a href="/about" class="text-white hover:text-red-400 transition-colors">{$_('nav.about')}</a>
-      <a href="/collections" class="text-white hover:text-red-400 transition-colors">{$_('nav.collections')}</a>
-      <a href="/custom" class="text-white hover:text-red-400 transition-colors">{$_('nav.custom')}</a>
-      <a href="/contact" class="text-white hover:text-red-400 transition-colors">{$_('nav.contact')}</a>
+      <a href="/" class="text-white hover:text-red-400 transition-colors">{$t ? $t('nav.home') : 'Home'}</a>
+      <a href="/about" class="text-white hover:text-red-400 transition-colors">{$t ? $t('nav.about') : 'About'}</a>
+      <a href="/collections" class="text-white hover:text-red-400 transition-colors">{$t ? $t('nav.collections') : 'Collections'}</a>
+      <a href="/custom" class="text-white hover:text-red-400 transition-colors">{$t ? $t('nav.custom') : 'Custom Designs'}</a>
+      <a href="/contact" class="text-white hover:text-red-400 transition-colors">{$t ? $t('nav.contact') : 'Contact'}</a>
     </nav>
     
     <LanguageSwitcher />
