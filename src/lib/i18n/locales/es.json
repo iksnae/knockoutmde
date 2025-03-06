@@ -1,22 +1,31 @@
 {
   "app": {
-    "title": "KnockoutMDE",
-    "description": "Un proyecto SvelteKit 2 + Svelte 5 con Tailwind CSS y soporte para localización"
+    "title": "Knock Out MDE",
+    "description": "Indumentaria de boxeo y diseño de vestuario a medida desde Medellín, Colombia"
   },
   "nav": {
     "home": "Inicio",
-    "about": "Acerca de"
+    "about": "Nosotros",
+    "collections": "Colecciones",
+    "custom": "Diseños Personalizados",
+    "contact": "Contacto"
   },
   "home": {
-    "welcome": "Bienvenido a KnockoutMDE",
-    "description": "Una aplicación web moderna construida con SvelteKit 2 y Svelte 5"
+    "welcome": "Bienvenido a Knock Out MDE",
+    "description": "Indumentaria de boxeo y vestuarios artesanales diseñados con pasión en Medellín, Colombia"
   },
   "about": {
-    "title": "Acerca de KnockoutMDE",
-    "description": "KnockoutMDE es un framework de aplicación web moderno, potente y flexible."
+    "title": "Sobre Knock Out MDE",
+    "description": "Fundada en Medellín, Knock Out MDE se especializa en crear indumentaria de boxeo y diseños de vestuario únicos y de alta calidad, adaptados a la personalidad y estilo de cada luchador.",
+    "craft": "Nuestro Arte",
+    "craftText": "Combinamos la artesanía tradicional con el diseño innovador para crear prendas llamativas y duraderas que destacan en el ring.",
+    "heritage": "Herencia Colombiana",
+    "heritageText": "Nuestros diseños se inspiran en la rica herencia cultural de Colombia y la vibrante escena artística de Medellín."
   },
   "buttons": {
-    "learnMore": "Saber más",
-    "getStarted": "Comenzar"
+    "learnMore": "Conocer Más",
+    "getStarted": "Ver Colecciones",
+    "contact": "Contáctanos",
+    "customize": "Pedido Personalizado"
   }
 }
