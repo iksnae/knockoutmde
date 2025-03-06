@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { t } from '$lib/i18n';
+  import { _ } from '$lib/i18n';
   import { path } from '$lib/utils/path';
 </script>
 
@@ -15,15 +15,15 @@
       <span class="text-white">MDE</span>
     </h1>
     <p class="text-xl md:text-2xl text-gray-300 mb-10">
-      {$t ? $t('home.description') : 'Handcrafted boxing apparel and costumes designed with passion in Medellín, Colombia'}
+      {$_('home.description')}
     </p>
     
     <div class="flex flex-col sm:flex-row justify-center gap-4">
       <a href={path('/about/')} class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
-        {$t ? $t('buttons.learnMore') : 'Learn More'}
+        {$_('buttons.learnMore')}
       </a>
       <a href={path('/collections/')} class="bg-zinc-700 hover:bg-zinc-600 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
-        {$t ? $t('buttons.getStarted') : 'View Collections'}
+        {$_('buttons.getStarted')}
       </a>
     </div>
   </div>
