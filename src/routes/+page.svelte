@@ -16,7 +16,7 @@
       <a href="/about" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
         {$_('buttons.learnMore')}
       </a>
-      <a href="https://github.com/knockoutmde/knockoutmde" target="_blank" rel="noreferrer" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-6 rounded-lg transition duration-300">
+      <a href="https://github.com/knockoutmde/knockoutmde-1" target="_blank" rel="noreferrer" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-6 rounded-lg transition duration-300">
         {$_('buttons.getStarted')}
       </a>
     </div>
