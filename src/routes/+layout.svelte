@@ -1,25 +1,19 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { locale, isLocaleLoaded } from '$lib/i18n';
+  import { locale, isLocaleLoaded, startClient, defaultLocale } from '$lib/i18n';
   import '../app.css';
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
 
-  // Initialize browser-specific locale settings on client-side
+  // Initialize i18n on client-side
   onMount(() => {
-    // Set locale based on browser language if available
-    if (typeof window !== 'undefined' && navigator) {
-      const browserLang = navigator.language.split('-')[0];
-      if (browserLang === 'es') {
-        locale.set('es');
-      } else {
-        // Default to English for all other languages
-        locale.set('en');
-      }
-    }
+    // Initialize i18n client-side features
+    startClient();
     
-    // Mark locale as loaded after browser-specific settings
-    isLocaleLoaded.set(true);
+    // Explicitly set the default locale (Spanish) if no stored preference
+    if (!localStorage.getItem('preferred-locale')) {
+      locale.set(defaultLocale);
+    }
   });
 </script>
 
@@ -34,8 +28,7 @@
     <Footer />
   </div>
 {:else}
-  <div class="flex items-center justify-center min-h-screen">
-    <!-- Simple loading indicator -->
-    <div class="animate-pulse text-xl">Loading...</div>
+  <div class="flex items-center justify-center min-h-screen bg-zinc-900 text-white">
+    <div class="text-xl">Cargando...</div>
   </div>
 {/if}
