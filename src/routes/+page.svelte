@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { _ } from 'svelte-i18n';
+  import { t } from '$lib/i18n';
 </script>
 
 <svelte:head>
-  <title>{$_('app.title')} - {$_('nav.home')}</title>
-  <meta name="description" content={$_('app.description')} />
+  <title>Knock Out MDE - Home</title>
+  <meta name="description" content="Bespoke boxing apparel and costume design from Medellín, Colombia" />
 </svelte:head>
 
 <section class="relative py-16 md:py-24 bg-gradient-to-br from-zinc-900 to-zinc-800 text-white">
@@ -13,14 +13,16 @@
       <span class="text-red-500">KNOCK OUT</span> 
       <span class="text-white">MDE</span>
     </h1>
-    <p class="text-xl md:text-2xl text-gray-300 mb-10">{$_('home.description')}</p>
+    <p class="text-xl md:text-2xl text-gray-300 mb-10">
+      {$t ? $t('home.description') : 'Handcrafted boxing apparel and costumes designed with passion in Medellín, Colombia'}
+    </p>
     
     <div class="flex flex-col sm:flex-row justify-center gap-4">
       <a href="/about" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
-        {$_('buttons.learnMore')}
+        {$t ? $t('buttons.learnMore') : 'Learn More'}
       </a>
       <a href="/collections" class="bg-zinc-700 hover:bg-zinc-600 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
-        {$_('buttons.getStarted')}
+        {$t ? $t('buttons.getStarted') : 'View Collections'}
       </a>
     </div>
   </div>
