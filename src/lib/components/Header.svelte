@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { t } from '$lib/i18n';
+  import { _ } from '$lib/i18n';
   import { path } from '$lib/utils/path';
   import LanguageSwitcher from './LanguageSwitcher.svelte';
 </script>
@@ -14,11 +14,11 @@
     </div>
     
     <nav class="hidden md:flex space-x-6">
-      <a href={path('/')} class="text-white hover:text-red-400 transition-colors">{$t ? $t('nav.home') : 'Home'}</a>
-      <a href={path('/about/')} class="text-white hover:text-red-400 transition-colors">{$t ? $t('nav.about') : 'About'}</a>
-      <a href={path('/collections/')} class="text-white hover:text-red-400 transition-colors">{$t ? $t('nav.collections') : 'Collections'}</a>
-      <a href={path('/custom/')} class="text-white hover:text-red-400 transition-colors">{$t ? $t('nav.custom') : 'Custom Designs'}</a>
-      <a href={path('/contact/')} class="text-white hover:text-red-400 transition-colors">{$t ? $t('nav.contact') : 'Contact'}</a>
+      <a href={path('/')} class="text-white hover:text-red-400 transition-colors">{$_('nav.home')}</a>
+      <a href={path('/about/')} class="text-white hover:text-red-400 transition-colors">{$_('nav.about')}</a>
+      <a href={path('/collections/')} class="text-white hover:text-red-400 transition-colors">{$_('nav.collections')}</a>
+      <a href={path('/custom/')} class="text-white hover:text-red-400 transition-colors">{$_('nav.custom')}</a>
+      <a href={path('/contact/')} class="text-white hover:text-red-400 transition-colors">{$_('nav.contact')}</a>
     </nav>
     
     <LanguageSwitcher />
