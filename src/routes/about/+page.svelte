@@ -1,5 +1,6 @@
 <script lang="ts">
   import { t } from '$lib/i18n';
+  import { path } from '$lib/utils/path';
 </script>
 
 <svelte:head>
@@ -101,7 +102,7 @@
   <div class="max-w-4xl mx-auto px-4 text-center">
     <h2 class="text-3xl font-bold mb-6">Ready to Create Your Custom Design?</h2>
     <p class="text-xl mb-8">Let us help you stand out in the ring with a unique, handcrafted design.</p>
-    <a href="/contact" class="inline-block bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 text-lg">
+    <a href={path('/contact/')} class="inline-block bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 text-lg">
       {$t ? $t('buttons.contact') : 'Get in Touch'}
     </a>
   </div>
