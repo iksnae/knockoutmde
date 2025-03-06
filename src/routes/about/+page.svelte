@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { t } from '$lib/i18n';
+  import { _ } from '$lib/i18n';
   import { path } from '$lib/utils/path';
 </script>
 
@@ -11,28 +11,28 @@
 <section class="py-12 bg-zinc-100">
   <div class="max-w-4xl mx-auto px-4">
     <h1 class="text-4xl font-bold mb-8 text-zinc-900">
-      {$t ? $t('about.title') : 'About Knock Out MDE'}
+      {$_('about.title')}
     </h1>
     <p class="text-lg text-gray-700 mb-8">
-      {$t ? $t('about.description') : 'Founded in Medellín, Knock Out MDE specializes in creating unique, high-quality boxing apparel and costume designs tailored to each fighter\'s personality and style.'}
+      {$_('about.description')}
     </p>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
       <div class="bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-2xl font-semibold mb-4 text-red-600">
-          {$t ? $t('about.craft') : 'Our Craft'}
+          {$_('about.craft')}
         </h2>
         <p class="text-gray-700">
-          {$t ? $t('about.craftText') : 'We combine traditional craftsmanship with innovative design to create striking, durable apparel that stands out in the ring.'}
+          {$_('about.craftText')}
         </p>
       </div>
       
       <div class="bg-white p-6 rounded-lg shadow-md">
         <h2 class="text-2xl font-semibold mb-4 text-red-600">
-          {$t ? $t('about.heritage') : 'Colombian Heritage'}
+          {$_('about.heritage')}
         </h2>
         <p class="text-gray-700">
-          {$t ? $t('about.heritageText') : 'Our designs draw inspiration from Colombia\'s rich cultural heritage and Medellín\'s vibrant art scene.'}
+          {$_('about.heritageText')}
         </p>
       </div>
     </div>
@@ -103,7 +103,7 @@
     <h2 class="text-3xl font-bold mb-6">Ready to Create Your Custom Design?</h2>
     <p class="text-xl mb-8">Let us help you stand out in the ring with a unique, handcrafted design.</p>
     <a href={path('/contact/')} class="inline-block bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition duration-300 text-lg">
-      {$t ? $t('buttons.contact') : 'Get in Touch'}
+      {$_('buttons.contact')}
     </a>
   </div>
 </section>
