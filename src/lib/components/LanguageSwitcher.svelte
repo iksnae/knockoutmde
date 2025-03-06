@@ -3,8 +3,7 @@
 
   const languages = [
     { code: 'en', name: 'EN' },
-    { code: 'es', name: 'ES' },
-    { code: 'fr', name: 'FR' }
+    { code: 'es', name: 'ES' }
   ];
 
   function changeLocale(newLocale: string) {
