@@ -13,7 +13,9 @@ const config = {
       strict: true
     }),
     paths: {
-      base: process.env.NODE_ENV === 'production' ? '/knockoutmde-1' : ''
+      // Set the correct base path for GitHub Pages
+      base: process.env.NODE_ENV === 'production' ? '/knockoutmde' : '',
+      relative: false
     }
   }
 };
