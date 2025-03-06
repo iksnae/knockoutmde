@@ -1,13 +1,12 @@
-# KnockoutMDE
+# Knock Out MDE
 
-A SvelteKit 2 + Svelte 5 project with Tailwind CSS and localization support.
+Official website for Knock Out MDE, a premium boxing apparel and costume design company based in Medellín, Colombia.
 
 ## Features
 
-- SvelteKit 2
-- Svelte 5
-- Tailwind CSS
-- Localization using svelte-i18n
+- Built with SvelteKit 2 and Svelte 5
+- Responsive design using Tailwind CSS
+- Multi-language support (English, Spanish, French) using svelte-i18n
 - GitHub Pages deployment
 
 ## Development
@@ -25,3 +24,17 @@ npm run build
 # Preview production build
 npm run preview
 ```
+
+## Project Structure
+
+- `src/lib/i18n` - Localization files and configuration
+- `src/lib/components` - Reusable UI components
+- `src/routes` - SvelteKit routes and pages
+
+## Deployment
+
+The site is automatically deployed to GitHub Pages using GitHub Actions when changes are pushed to the main branch.
+
+## License
+
+Copyright © 2025 Knock Out MDE. All rights reserved.
