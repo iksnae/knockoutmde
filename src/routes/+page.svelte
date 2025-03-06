@@ -1,5 +1,6 @@
 <script lang="ts">
   import { t } from '$lib/i18n';
+  import { path } from '$lib/utils/path';
 </script>
 
 <svelte:head>
@@ -18,10 +19,10 @@
     </p>
     
     <div class="flex flex-col sm:flex-row justify-center gap-4">
-      <a href="/about" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+      <a href={path('/about/')} class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
         {$t ? $t('buttons.learnMore') : 'Learn More'}
       </a>
-      <a href="/collections" class="bg-zinc-700 hover:bg-zinc-600 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
+      <a href={path('/collections/')} class="bg-zinc-700 hover:bg-zinc-600 text-white font-bold py-3 px-8 rounded-lg transition duration-300 text-lg">
         {$t ? $t('buttons.getStarted') : 'View Collections'}
       </a>
     </div>
@@ -39,7 +40,7 @@
         <div class="p-6">
           <h3 class="text-xl font-bold mb-2">Championship Series</h3>
           <p class="text-gray-600 mb-4">Professional-grade apparel designed for champions.</p>
-          <a href="/collections/championship" class="text-red-600 hover:text-red-800 font-medium">View Collection →</a>
+          <a href={path('/collections/championship/')} class="text-red-600 hover:text-red-800 font-medium">View Collection →</a>
         </div>
       </div>
       
@@ -49,7 +50,7 @@
         <div class="p-6">
           <h3 class="text-xl font-bold mb-2">Urban Fighter</h3>
           <p class="text-gray-600 mb-4">Street-inspired designs with Colombian urban flair.</p>
-          <a href="/collections/urban" class="text-red-600 hover:text-red-800 font-medium">View Collection →</a>
+          <a href={path('/collections/urban/')} class="text-red-600 hover:text-red-800 font-medium">View Collection →</a>
         </div>
       </div>
       
@@ -59,7 +60,7 @@
         <div class="p-6">
           <h3 class="text-xl font-bold mb-2">Custom Showcase</h3>
           <p class="text-gray-600 mb-4">One-of-a-kind designs created for elite fighters.</p>
-          <a href="/collections/custom" class="text-red-600 hover:text-red-800 font-medium">View Collection →</a>
+          <a href={path('/collections/custom/')} class="text-red-600 hover:text-red-800 font-medium">View Collection →</a>
         </div>
       </div>
     </div>
