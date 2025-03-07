@@ -2,20 +2,21 @@ import { browser } from '$app/environment';
 import { init, register, locale, _ } from 'svelte-i18n';
 import { writable } from 'svelte/store';
 
-// Register locales with Spanish first
-register('es', () => import('./locales/es.json'));
-register('en', () => import('./locales/en.json'));
-
 // Set Spanish as the default locale
 export const defaultLocale = 'es';
 
 // Create a loading state to track when i18n is ready
 export const isLocaleLoaded = writable(false);
 
+// Register locales
+register('es', () => import('./locales/es.json'));
+register('en', () => import('./locales/en.json'));
+
 /**
  * Function to setup i18n
  */
 function setupI18n() {
+  // Initialize with default locale for both client and server
   init({
     fallbackLocale: defaultLocale,
     initialLocale: defaultLocale
@@ -25,7 +26,7 @@ function setupI18n() {
   isLocaleLoaded.set(true);
 }
 
-// Initialize immediately
+// Initialize immediately for SSR
 setupI18n();
 
 /**
