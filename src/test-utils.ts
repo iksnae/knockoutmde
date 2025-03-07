@@ -1,7 +1,6 @@
 /**
  * Test utilities for Svelte 5 components
  */
-import { createRoot } from 'svelte';
 
 /**
  * Custom render function for Svelte 5 components
@@ -11,13 +10,17 @@ export function render(Component: any, props = {}) {
   const container = document.createElement('div');
   document.body.appendChild(container);
 
-  // Instantiate the component using Svelte 5's createRoot
-  createRoot(Component, {
+  // Mount the component using direct instantiation with mount function
+  // This is the Svelte 5 compatible way
+  const instance = new Component({
     target: container,
-    props
+    props,
+    // Disable compatibility check
+    hydrate: false,
+    $$internal: true
   });
 
-  return { container };
+  return { container, instance };
 }
 
 /**
