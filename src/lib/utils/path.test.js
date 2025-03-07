@@ -1,10 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { path } from './path';
 
-// Mock the $app/paths module
+// Mock the $app/paths module before importing the path utility
 vi.mock('$app/paths', () => ({
   base: '/knockoutmde'
 }));
+
+// Import after mocking
+import { path } from './path';
 
 describe('path utility', () => {
   it('should add base path to a simple path', () => {
