@@ -18,7 +18,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '$lib': path.resolve('./src/lib'),
-      '$app': path.resolve('./src/mocks/app')
+      '$app': path.resolve('./src/mocks/app'),
+      'svelte-i18n': path.resolve('./src/mocks/svelte-i18n.js')
     }
   }
 });
