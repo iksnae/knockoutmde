@@ -58,9 +58,9 @@ The project uses Vitest for unit and component testing with custom testing utili
 
 Svelte 5 has introduced breaking changes to component instantiation. Our approach:
 
-1. Use `createRoot` instead of `new Component()` to instantiate components
+1. Use our custom test utilities in `src/test-utils.ts` for rendering Svelte 5 components
 2. Handle hoisting issues in `vi.mock()` by using factory functions without referencing outer variables
-3. Use a custom test utilities (`src/test-utils.ts`) that work with Svelte 5
+3. Always include cleanup in afterEach to reset the DOM between tests
 
 ```typescript
 // Example for mocking with hoisting consideration
@@ -68,7 +68,7 @@ vi.mock('$lib/i18n', () => {
   // Don't reference variables from the outer scope in this factory function
   return {
     locale: {
-      subscribe: (cb) => { ... },
+      subscribe: (cb) => { /* ... */ },
       set: vi.fn()
     }
   };
@@ -77,12 +77,18 @@ vi.mock('$lib/i18n', () => {
 // Always import components AFTER defining mocks
 import MyComponent from './MyComponent.svelte';
 
-// Use createRoot-based render function
-import { render } from '../../test-utils';
+// Use the render function from test-utils
+import { render, cleanup } from '../../test-utils';
 
-it('should render correctly', () => {
-  const { container } = render(MyComponent);
-  // Test against the container
+describe('Component tests', () => {
+  afterEach(() => {
+    cleanup();
+  });
+
+  it('should render correctly', () => {
+    const { container } = render(MyComponent);
+    // Test assertions here
+  });
 });
 ```
 
