@@ -1,24 +1,27 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { pageTitle, metaDescription } from './metadata';
 
-// Create a mock for the i18n module
-vi.mock('$lib/i18n', () => ({
-  t: vi.fn(() => ({
-    subscribe: vi.fn((callback) => {
-      callback((key: string) => {
-        // Return mock translations based on keys
-        if (key === 'app.title') return 'Knockout MDE';
-        if (key === 'meta.about') return 'About Us';
-        if (key === 'meta.contact') return 'Contact';
-        if (key === 'app.description') return 'Default app description';
-        if (key === 'about.description') return 'About page description';
-        // Default fallback
-        return key;
-      });
-      return () => {}; // unsubscribe function
-    })
-  }))
-}));
+// Mock the translation function more simply 
+vi.mock('$lib/i18n', () => {
+  return {
+    t: {
+      subscribe: (cb: Function) => {
+        // Simple callback that provides a mock translation function
+        cb((key: string) => {
+          if (key === 'app.title') return 'Knockout MDE';
+          if (key === 'meta.about') return 'About Us';
+          if (key === 'meta.contact') return 'Contact';
+          if (key === 'app.description') return 'Default app description';
+          if (key === 'about.description') return 'About page description';
+          return key;
+        });
+        
+        // Return unsubscribe function
+        return () => {};
+      }
+    }
+  };
+});
 
 describe('metadata utilities', () => {
   describe('pageTitle', () => {
