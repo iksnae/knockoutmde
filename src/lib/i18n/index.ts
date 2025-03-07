@@ -1,6 +1,10 @@
 import { browser } from '$app/environment';
-import { init, register, locale, _ } from 'svelte-i18n';
-import { writable } from 'svelte/store';
+import { init, register, locale, _, dictionary } from 'svelte-i18n';
+import { derived, get, writable } from 'svelte/store';
+
+// Import translations directly to ensure they're available immediately
+import es from './locales/es.json';
+import en from './locales/en.json';
 
 // Set Spanish as the default locale
 export const defaultLocale = 'es';
@@ -8,19 +12,53 @@ export const defaultLocale = 'es';
 // Create a loading state to track when i18n is ready
 export const isLocaleLoaded = writable(false);
 
-// Register locales
-register('es', () => import('./locales/es.json'));
-register('en', () => import('./locales/en.json'));
+// Add dictionaries synchronously for immediate access
+dictionary.set({ es, en });
+
+// Create a safe _ function that works even before locale is set
+export const t = derived(
+  [_, locale],
+  ([tf, currentLocale]) => 
+    (key: string, vars?: Record<string, any>) => {
+      try {
+        return tf(key, vars);
+      } catch (e) {
+        // If translation fails, try to get from dictionary directly
+        try {
+          const parts = key.split('.');
+          let result = currentLocale === 'es' ? es : en;
+          
+          for (const part of parts) {
+            if (result[part] === undefined) {
+              return key; // Key doesn't exist, return the key itself
+            }
+            result = result[part];
+          }
+          
+          return typeof result === 'string' ? result : key;
+        } catch (err) {
+          return key; // Fallback to key if all else fails
+        }
+      }
+    }
+);
 
 /**
  * Function to setup i18n
  */
 function setupI18n() {
+  // Register locales with deferred loading
+  register('es', () => Promise.resolve(es));
+  register('en', () => Promise.resolve(en));
+  
   // Initialize with default locale for both client and server
   init({
     fallbackLocale: defaultLocale,
     initialLocale: defaultLocale
   });
+  
+  // Set locale to ensure it's immediately available
+  locale.set(defaultLocale);
   
   // Mark as loaded after initialization
   isLocaleLoaded.set(true);
