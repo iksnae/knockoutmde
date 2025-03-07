@@ -8,9 +8,105 @@ Official website for Knock Out MDE, a premium boxing apparel and costume design 
 - Responsive design using Tailwind CSS
 - Multi-language support (English, Spanish, French) using svelte-i18n
 - GitHub Pages deployment
-- Basic test structure with Vitest (with Svelte 5 limitations)
+- Basic test structure with Vitest
 
-## Development
+## Project Structure
+
+- `src/lib/i18n` - Localization files and configuration
+- `src/lib/components` - Reusable UI components
+- `src/lib/utils` - Utility functions
+- `src/routes` - SvelteKit routes and pages
+- `src/mocks` - Test mocks for SvelteKit modules
+- `src/test-utils.ts` - Custom testing utilities for Svelte 5
+
+## Development Guide for AI Agents
+
+This section provides guidance for AI agents contributing to this project via GitHub APIs without local cloning.
+
+### Exploring the Codebase
+
+When exploring the codebase, start by examining these key files:
+
+1. **Configuration Files**:
+   - `package.json` - Project dependencies and scripts
+   - `svelte.config.js` - SvelteKit configuration
+   - `tsconfig.json` - TypeScript configuration
+   - `vite.config.ts` - Vite bundler configuration 
+
+2. **Main Components**:
+   - `src/lib/components/Header.svelte`
+   - `src/lib/components/Footer.svelte`
+   - `src/lib/components/LanguageSwitcher.svelte`
+
+3. **Routes**:
+   - `src/routes/+layout.ts` - Main layout configuration
+   - `src/routes/+layout.svelte` - Main layout component
+   - `src/routes/+page.svelte` - Home page
+   - Route directories (`about`, `collections`, etc.)
+
+4. **Utilities**:
+   - `src/lib/utils/metadata.ts` - Page metadata utilities
+   - `src/lib/utils/path.js` - Path handling utilities
+
+### Svelte 5 Specific Notes
+
+This project uses Svelte 5, which has significant differences from Svelte 4:
+
+1. **Reactive Syntax**:
+   - Avoid using `$:` reactive statements as they are not allowed
+   - Use modern Svelte 5 reactive syntax instead
+   - Use `$effect` for side effects
+   - Use `$derived` for derived values
+
+2. **Component Testing Challenges**:
+   - Svelte 5 component testing has limitations
+   - Direct component instantiation (`new Component()`) is no longer supported
+   - We use a simplified testing approach described in the Testing section
+
+### Making Changes
+
+When working with this codebase:
+
+1. **Create dedicated branches** for each feature or fix
+2. **Make small, focused commits** rather than large changes
+3. **Update tests** alongside code changes
+4. **Document API changes** in code comments
+5. **Follow the existing code style** and structure
+
+### Testing Strategy
+
+Currently, we have a limited testing setup due to Svelte 5 compatibility issues:
+
+1. **Utility Tests**:
+   - Located in `src/lib/utils/*.test.ts`
+   - These are fully functional and should be maintained/expanded
+
+2. **Route Tests**:
+   - Located in `src/routes/*.test.ts`
+   - Focus on testing route configuration and data loading
+
+3. **Component Tests**:
+   - Currently limited due to Svelte 5 compatibility
+   - Will be expanded when proper Svelte 5 testing tools mature
+
+### Important Considerations
+
+1. **Internationalization**:
+   - All user-facing strings should use the `$t('key')` format
+   - Locale files are in `src/lib/i18n/locales/`
+   - New strings should be added to all locale files
+
+2. **Routing**:
+   - Uses SvelteKit's file-based routing
+   - Trailing slashes are enforced (`trailingSlash: 'always'`)
+   - Site is prerendered (`prerender: true`)
+
+3. **GitHub API Constraints**:
+   - When evaluating large files, request specific paths rather than entire directories
+   - Use targeted API calls to minimize rate limiting
+   - Chain edits together in logical, atomic groupings
+
+## Development Commands
 
 ```bash
 # Install dependencies
@@ -27,89 +123,6 @@ npm run preview
 
 # Run tests
 npm test
-
-# Run tests with watch mode
-npm run test:watch
-
-# Run tests with coverage report
-npm run test:coverage
-```
-
-## Project Structure
-
-- `src/lib/i18n` - Localization files and configuration
-- `src/lib/components` - Reusable UI components
-- `src/routes` - SvelteKit routes and pages
-- `src/mocks` - Test mocks for SvelteKit modules
-- `src/test-utils.ts` - Custom testing utilities for Svelte 5
-
-## Testing Notes
-
-### Current Testing Limitations with Svelte 5
-
-Svelte 5 introduces significant API changes that make traditional component testing difficult:
-
-1. The standard component API has changed completely, and `new Component()` is no longer supported
-2. Direct DOM rendering of components (even with the internal API) is challenging in test environments
-3. As of the time of writing, there isn't a fully compatible testing library for Svelte 5 components
-
-Our current approach uses a simplified testing strategy:
-- We've set up the basic test infrastructure and mocks for SvelteKit modules
-- We're using a simplified DOM-based testing approach that verifies test setup works
-- We can test utility functions and module mocks fully
-- Component tests are currently limited to checking test framework functionality
-
-### Testing Structure
-
-The current test suite includes:
-- **Utilities**: Full tests for path handling and metadata utilities
-- **i18n Module**: Tests for localization setup and functionality
-- **Components**: Framework tests for core UI components
-  - Header
-  - Footer
-  - LanguageSwitcher
-
-### Future Testing Improvements
-
-As Svelte 5 testing tools mature, we plan to:
-1. Implement proper component rendering and testing
-2. Add interaction testing for UI components
-3. Increase overall test coverage
-4. Potentially add end-to-end tests using Playwright or Cypress
-
-### Mock Setup Example
-
-```typescript
-// Example for mocking with hoisting consideration
-vi.mock('$lib/i18n', () => {
-  // Factory functions should not reference any variables from outer scope
-  return {
-    locale: {
-      subscribe: (cb) => {
-        cb('en');
-        return { unsubscribe: () => {} };
-      },
-      set: vi.fn()
-    }
-  };
-});
-
-// Always import components AFTER defining mocks
-import MyComponent from './MyComponent.svelte';
-
-// Use the simplified render function from test-utils
-import { render, cleanup } from '../../test-utils';
-
-describe('Component tests', () => {
-  afterEach(() => {
-    cleanup();
-  });
-
-  it('should work with the test setup', () => {
-    const { container } = render(MyComponent);
-    expect(container).toBeTruthy();
-  });
-});
 ```
 
 ## Deployment
