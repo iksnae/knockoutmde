@@ -2,7 +2,8 @@
   import { t } from '$lib/i18n';
   import { path } from '$lib/utils/path';
   import LanguageSwitcher from './LanguageSwitcher.svelte';
-  import { onMount, effect } from 'svelte';
+  import { onMount } from 'svelte';
+  import { slide } from 'svelte/transition';
   import { goto } from '$app/navigation';
 
   // State for mobile menu and header scroll
@@ -181,18 +182,3 @@
 
 <!-- Spacer to prevent content from being hidden behind fixed header -->
 <div class="h-16 md:h-20"></div>
-
-<style>
-  /* Transition animations */
-  :global(.slide-enter), :global(.slide-leave-to) {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  :global(.slide-enter-to), :global(.slide-leave) {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  :global(.slide-enter-active), :global(.slide-leave-active) {
-    transition: all 0.3s ease-in-out;
-  }
-</style>
