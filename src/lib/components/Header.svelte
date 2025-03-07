@@ -24,12 +24,25 @@
     event.preventDefault();
     // Stop propagation to prevent conflicts
     event.stopPropagation();
-    // Close the menu
+    // Close the menu first
     closeMobileMenu();
-    // Navigate programmatically after a short delay
-    setTimeout(() => {
+    
+    // Try to use SvelteKit navigation, fallback to regular navigation
+    try {
+      // Wait a tiny bit to ensure the menu is closed visually first
+      setTimeout(() => {
+        // If goto is available (SvelteKit), use it
+        if (typeof goto === 'function') {
+          goto(href);
+        } else {
+          // Fallback to regular navigation
+          window.location.href = href;
+        }
+      }, 50);
+    } catch (e) {
+      // If any error, just use regular navigation
       window.location.href = href;
-    }, 50);
+    }
   }
 
   // Close mobile menu when clicking outside or resizing to desktop
