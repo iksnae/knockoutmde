@@ -24,6 +24,6 @@
   </div>
 {:else}
   <div class="flex items-center justify-center min-h-screen bg-zinc-900 text-white">
-    <div class="text-xl">{$_('app.loading')}</div>
+    <div class="text-xl">Cargando...</div>
   </div>
 {/if}
