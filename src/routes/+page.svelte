@@ -29,7 +29,6 @@
     </div>
   </div>
 </section>
-
 <section class="py-16 bg-white">
   <div class="container mx-auto px-4">
     <h2 class="text-3xl font-bold text-center mb-12 text-zinc-900">{$t('collections.featured')}</h2>
@@ -37,7 +36,7 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- Collection Card 1 -->
       <div class="bg-gray-100 rounded-lg overflow-hidden shadow-md">
-        <div class="h-64 bg-zinc-300"></div>
+        <img src="D24FE6AF-B7B0-4E77-8DD9-C5E27B31F260.png" alt="Championship Collection" class="h-64 w-full object-cover" />
         <div class="p-6">
           <h3 class="text-xl font-bold mb-2">{$t('collections.championship.title')}</h3>
           <p class="text-gray-600 mb-4">{$t('collections.championship.description')}</p>
@@ -47,7 +46,7 @@
       
       <!-- Collection Card 2 -->
       <div class="bg-gray-100 rounded-lg overflow-hidden shadow-md">
-        <div class="h-64 bg-zinc-300"></div>
+        <img src="FEC4D3D6-8EAA-4D1D-BAFD-76B6B882D726.png" alt="Urban Collection" class="h-64 w-full object-cover" />
         <div class="p-6">
           <h3 class="text-xl font-bold mb-2">{$t('collections.urban.title')}</h3>
           <p class="text-gray-600 mb-4">{$t('collections.urban.description')}</p>
@@ -57,7 +56,7 @@
       
       <!-- Collection Card 3 -->
       <div class="bg-gray-100 rounded-lg overflow-hidden shadow-md">
-        <div class="h-64 bg-zinc-300"></div>
+        <img src="1B39A125-C80A-4A86-A134-8EA589D6212E.png" alt="Custom Collection" class="h-64 w-full object-cover" />
         <div class="p-6">
           <h3 class="text-xl font-bold mb-2">{$t('collections.custom.title')}</h3>
           <p class="text-gray-600 mb-4">{$t('collections.custom.description')}</p>
