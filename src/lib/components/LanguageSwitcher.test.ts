@@ -1,11 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render } from '@testing-library/svelte-svelte5';
 import userEvent from '@testing-library/user-event';
 import { writable } from 'svelte/store';
 
+// Create locale store for mocking
+const mockLocale = writable('en'); 
+
 // Mock the i18n module before importing the component
 vi.mock('$lib/i18n', () => {
-  const mockLocale = writable('en');
   return {
     locale: {
       subscribe: mockLocale.subscribe,
@@ -14,21 +15,34 @@ vi.mock('$lib/i18n', () => {
   };
 });
 
-// Import component after mocks
+// Import after mocks
 import LanguageSwitcher from './LanguageSwitcher.svelte';
+
+// Custom render helper for Svelte 5 components
+function renderComponent(Component: any) {
+  // Create a container
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+
+  // Instantiate the component
+  new Component({
+    target: container
+  });
+
+  return { container };
+}
 
 describe('LanguageSwitcher component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Reset the locale mock before each test
-    const { locale } = vi.mocked(import('$lib/i18n'));
-    if (locale && locale.set) {
-      locale.set('en');
-    }
+    mockLocale.set('en');
+    
+    // Reset the DOM between tests
+    document.body.innerHTML = '';
   });
 
   it('should render language buttons', () => {
-    const { container } = render(LanguageSwitcher);
+    const { container } = renderComponent(LanguageSwitcher);
     
     // Get all buttons
     const buttons = container.querySelectorAll('button');
@@ -45,7 +59,7 @@ describe('LanguageSwitcher component', () => {
     const { locale } = await import('$lib/i18n');
     const user = userEvent.setup();
     
-    const { container } = render(LanguageSwitcher);
+    const { container } = renderComponent(LanguageSwitcher);
     
     // Find buttons by text
     const buttons = container.querySelectorAll('button');
@@ -59,11 +73,8 @@ describe('LanguageSwitcher component', () => {
   });
 
   it('should apply different styles to active and inactive languages', async () => {
-    const { locale } = await import('$lib/i18n');
-    const originalSet = locale.set;
-    
     // First render with 'en' active
-    const { container } = render(LanguageSwitcher);
+    const { container } = renderComponent(LanguageSwitcher);
     
     const buttons = container.querySelectorAll('button');
     const esButton = buttons[0];
@@ -74,11 +85,12 @@ describe('LanguageSwitcher component', () => {
     // Check Spanish button has inactive class
     expect(esButton.className).toContain('from-zinc-800 to-zinc-700 text-gray-300');
     
-    // Change locale to Spanish by calling the set function directly
-    originalSet('es');
+    // Change locale to Spanish
+    mockLocale.set('es');
     
-    // Re-render to reflect the change
-    const { container: updatedContainer } = render(LanguageSwitcher);
+    // Reset and re-render to reflect the change
+    document.body.innerHTML = '';
+    const { container: updatedContainer } = renderComponent(LanguageSwitcher);
     
     const updatedButtons = updatedContainer.querySelectorAll('button');
     const updatedEsButton = updatedButtons[0];
