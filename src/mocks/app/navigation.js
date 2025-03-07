@@ -1,3 +1,5 @@
+import { vi } from 'vitest';
+
 /**
  * Mock for $app/navigation
  */
