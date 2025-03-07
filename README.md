@@ -44,7 +44,7 @@ npm run test:coverage
 
 ## Testing
 
-The project uses Vitest and Testing Library for unit and component testing. The test coverage includes:
+The project uses Vitest and Testing Library (with Svelte 5 support) for unit and component testing. The test coverage includes:
 
 - **Utilities**: Tests for path handling and metadata utilities
 - **i18n Module**: Tests for localization setup and functionality
@@ -55,10 +55,31 @@ The project uses Vitest and Testing Library for unit and component testing. The 
 
 To add more tests, follow these guidelines:
 
-1. Use the appropriate mock modules from `src/mocks` when testing code that depends on SvelteKit modules
-2. Write tests that use DOM queries directly for more reliable component testing
-3. Group related tests using describe blocks
-4. Use test doubles (mocks and spies) for external dependencies
+1. Use the `@testing-library/svelte-svelte5` package for testing Svelte 5 components
+2. Always define vi.mock() before importing the modules you're testing
+3. Use the appropriate mock modules from `src/mocks` when testing code that depends on SvelteKit modules
+4. Write tests that use DOM queries directly for more reliable component testing
+5. Group related tests using describe blocks
+6. Use test doubles (mocks and spies) for external dependencies
+
+### Common Testing Patterns
+
+```typescript
+// Always mock dependencies before importing tested modules
+vi.mock('$lib/i18n', () => ({
+  // Mock implementation
+}));
+
+// Import after mocks
+import { ComponentToTest } from './component';
+
+describe('Component tests', () => {
+  it('should do something', () => {
+    const { container } = render(ComponentToTest);
+    // Test using container queries
+  });
+});
+```
 
 ## Deployment
 
