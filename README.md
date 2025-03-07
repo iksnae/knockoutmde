@@ -8,6 +8,7 @@ Official website for Knock Out MDE, a premium boxing apparel and costume design 
 - Responsive design using Tailwind CSS
 - Multi-language support (English, Spanish, French) using svelte-i18n
 - GitHub Pages deployment
+- Comprehensive test coverage with Vitest
 
 ## Development
 
@@ -23,6 +24,15 @@ npm run build
 
 # Preview production build
 npm run preview
+
+# Run tests
+npm test
+
+# Run tests with watch mode
+npm run test:watch
+
+# Run tests with coverage report
+npm run test:coverage
 ```
 
 ## Project Structure
@@ -30,6 +40,25 @@ npm run preview
 - `src/lib/i18n` - Localization files and configuration
 - `src/lib/components` - Reusable UI components
 - `src/routes` - SvelteKit routes and pages
+- `src/mocks` - Test mocks for SvelteKit modules
+
+## Testing
+
+The project uses Vitest and Testing Library for unit and component testing. The test coverage includes:
+
+- **Utilities**: Tests for path handling and metadata utilities
+- **i18n Module**: Tests for localization setup and functionality
+- **Components**: Tests for core UI components
+  - Header
+  - Footer
+  - LanguageSwitcher
+
+To add more tests, follow these guidelines:
+
+1. Use the appropriate mock modules from `src/mocks` when testing code that depends on SvelteKit modules
+2. Write tests that use DOM queries directly for more reliable component testing
+3. Group related tests using describe blocks
+4. Use test doubles (mocks and spies) for external dependencies
 
 ## Deployment
 
