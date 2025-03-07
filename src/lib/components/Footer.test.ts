@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render } from '@testing-library/svelte';
+import { render } from '@testing-library/svelte-svelte5';
 
 // Mock dependencies before importing the component
 vi.mock('$lib/utils/path', () => ({
