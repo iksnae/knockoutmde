@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render } from '@testing-library/svelte';
+import { render } from '@testing-library/svelte-svelte5';
 import userEvent from '@testing-library/user-event';
 
 // Set up mocks before importing the component
