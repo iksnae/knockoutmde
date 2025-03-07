@@ -41,10 +41,11 @@ npm run test:coverage
 - `src/lib/components` - Reusable UI components
 - `src/routes` - SvelteKit routes and pages
 - `src/mocks` - Test mocks for SvelteKit modules
+- `src/test-utils.ts` - Custom testing utilities for Svelte 5
 
 ## Testing
 
-The project uses Vitest and Testing Library (with Svelte 5 support) for unit and component testing. The test coverage includes:
+The project uses Vitest for unit and component testing with custom testing utilities for Svelte 5 compatibility. The test coverage includes:
 
 - **Utilities**: Tests for path handling and metadata utilities
 - **i18n Module**: Tests for localization setup and functionality
@@ -53,31 +54,35 @@ The project uses Vitest and Testing Library (with Svelte 5 support) for unit and
   - Footer
   - LanguageSwitcher
 
-To add more tests, follow these guidelines:
+### Svelte 5 Testing Notes
 
-1. Use the `@testing-library/svelte-svelte5` package for testing Svelte 5 components
-2. Always define vi.mock() before importing the modules you're testing
-3. Use the appropriate mock modules from `src/mocks` when testing code that depends on SvelteKit modules
-4. Write tests that use DOM queries directly for more reliable component testing
-5. Group related tests using describe blocks
-6. Use test doubles (mocks and spies) for external dependencies
+Svelte 5 has introduced breaking changes to component instantiation. Our approach:
 
-### Common Testing Patterns
+1. Use `createRoot` instead of `new Component()` to instantiate components
+2. Handle hoisting issues in `vi.mock()` by using factory functions without referencing outer variables
+3. Use a custom test utilities (`src/test-utils.ts`) that work with Svelte 5
 
 ```typescript
-// Always mock dependencies before importing tested modules
-vi.mock('$lib/i18n', () => ({
-  // Mock implementation
-}));
+// Example for mocking with hoisting consideration
+vi.mock('$lib/i18n', () => {
+  // Don't reference variables from the outer scope in this factory function
+  return {
+    locale: {
+      subscribe: (cb) => { ... },
+      set: vi.fn()
+    }
+  };
+});
 
-// Import after mocks
-import { ComponentToTest } from './component';
+// Always import components AFTER defining mocks
+import MyComponent from './MyComponent.svelte';
 
-describe('Component tests', () => {
-  it('should do something', () => {
-    const { container } = render(ComponentToTest);
-    // Test using container queries
-  });
+// Use createRoot-based render function
+import { render } from '../../test-utils';
+
+it('should render correctly', () => {
+  const { container } = render(MyComponent);
+  // Test against the container
 });
 ```
 
