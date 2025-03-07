@@ -1,13 +1,25 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render } from '@testing-library/svelte-svelte5';
+import { compile } from 'svelte/compiler';
+import Footer from './Footer.svelte';
 
 // Mock dependencies before importing the component
 vi.mock('$lib/utils/path', () => ({
   path: vi.fn((url) => `/knockoutmde${url}`)
 }));
 
-// Import after mocks are defined
-import Footer from './Footer.svelte';
+// Custom render helper for Svelte 5 components
+function renderComponent(Component: any) {
+  // Create a container
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+
+  // Instantiate the component
+  new Component({
+    target: container
+  });
+
+  return { container };
+}
 
 describe('Footer component', () => {
   beforeEach(() => {
@@ -16,10 +28,13 @@ describe('Footer component', () => {
     // Mock the Date constructor to return a consistent date
     const mockDate = new Date('2025-01-01');
     vi.spyOn(global, 'Date').mockImplementation(() => mockDate);
+
+    // Reset the DOM between tests
+    document.body.innerHTML = '';
   });
   
   it('should render the logo', () => {
-    const { container } = render(Footer);
+    const { container } = renderComponent(Footer);
     
     // Look for logo elements
     const logoElements = container.querySelectorAll('.bg-gradient-to-r');
@@ -37,7 +52,7 @@ describe('Footer component', () => {
   });
   
   it('should render the footer sections', () => {
-    const { container } = render(Footer);
+    const { container } = renderComponent(Footer);
     
     // Look for section headings
     const headings = container.querySelectorAll('h3');
@@ -45,7 +60,7 @@ describe('Footer component', () => {
   });
   
   it('should render social media icons with proper accessibility', () => {
-    const { container } = render(Footer);
+    const { container } = renderComponent(Footer);
     
     // Find social media links
     const socialLinks = container.querySelectorAll('a[href="#"]');
@@ -65,7 +80,7 @@ describe('Footer component', () => {
   });
   
   it('should render the address information', () => {
-    const { container } = render(Footer);
+    const { container } = renderComponent(Footer);
     
     // Check for address content
     const footerText = container.textContent;
@@ -76,7 +91,7 @@ describe('Footer component', () => {
   });
   
   it('should display the current year in the copyright text', () => {
-    const { container } = render(Footer);
+    const { container } = renderComponent(Footer);
     
     // Get the current year from our mocked date
     const year = new Date().getFullYear();
