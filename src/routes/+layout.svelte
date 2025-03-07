@@ -23,7 +23,7 @@
     <Footer />
   </div>
 {:else}
-  <div class="flex items-center justify-center min-h-screen bg-zinc-900 text-white">
-    <div class="text-xl">{$t('app.loading')}</div>
+  <div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-knockout-dark via-zinc-800 to-knockout-dark text-white">
+    <div class="text-xl animate-pulse">{$t('app.loading')}</div>
   </div>
 {/if}
