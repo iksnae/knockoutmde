@@ -21,5 +21,19 @@ export default defineConfig({
       '$app': path.resolve('./src/mocks/app'),
       'svelte-i18n': path.resolve('./src/mocks/svelte-i18n.js')
     }
+  },
+  // Add this section to specify the test TypeScript config
+  optimizeDeps: {
+    include: ['@testing-library/jest-dom']
+  },
+  // Set the esbuild target for testing
+  esbuild: {
+    target: 'esnext'
+  },
+  // Use the tsconfig.test.json for tests
+  server: {
+    fs: {
+      allow: ['.']
+    },
   }
 });
