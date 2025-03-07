@@ -8,7 +8,7 @@ Official website for Knock Out MDE, a premium boxing apparel and costume design 
 - Responsive design using Tailwind CSS
 - Multi-language support (English, Spanish, French) using svelte-i18n
 - GitHub Pages deployment
-- Comprehensive test coverage with Vitest
+- Basic test structure with Vitest (with Svelte 5 limitations)
 
 ## Development
 
@@ -43,32 +43,52 @@ npm run test:coverage
 - `src/mocks` - Test mocks for SvelteKit modules
 - `src/test-utils.ts` - Custom testing utilities for Svelte 5
 
-## Testing
+## Testing Notes
 
-The project uses Vitest for unit and component testing with custom testing utilities for Svelte 5 compatibility. The test coverage includes:
+### Current Testing Limitations with Svelte 5
 
-- **Utilities**: Tests for path handling and metadata utilities
+Svelte 5 introduces significant API changes that make traditional component testing difficult:
+
+1. The standard component API has changed completely, and `new Component()` is no longer supported
+2. Direct DOM rendering of components (even with the internal API) is challenging in test environments
+3. As of the time of writing, there isn't a fully compatible testing library for Svelte 5 components
+
+Our current approach uses a simplified testing strategy:
+- We've set up the basic test infrastructure and mocks for SvelteKit modules
+- We're using a simplified DOM-based testing approach that verifies test setup works
+- We can test utility functions and module mocks fully
+- Component tests are currently limited to checking test framework functionality
+
+### Testing Structure
+
+The current test suite includes:
+- **Utilities**: Full tests for path handling and metadata utilities
 - **i18n Module**: Tests for localization setup and functionality
-- **Components**: Tests for core UI components
+- **Components**: Framework tests for core UI components
   - Header
   - Footer
   - LanguageSwitcher
 
-### Svelte 5 Testing Notes
+### Future Testing Improvements
 
-Svelte 5 has introduced breaking changes to component instantiation. Our approach:
+As Svelte 5 testing tools mature, we plan to:
+1. Implement proper component rendering and testing
+2. Add interaction testing for UI components
+3. Increase overall test coverage
+4. Potentially add end-to-end tests using Playwright or Cypress
 
-1. Use our custom test utilities in `src/test-utils.ts` for rendering Svelte 5 components
-2. Handle hoisting issues in `vi.mock()` by using factory functions without referencing outer variables
-3. Always include cleanup in afterEach to reset the DOM between tests
+### Mock Setup Example
 
 ```typescript
 // Example for mocking with hoisting consideration
 vi.mock('$lib/i18n', () => {
-  // Don't reference variables from the outer scope in this factory function
+  // Factory functions should not reference any variables from outer scope
   return {
     locale: {
-      subscribe: (cb) => { /* ... */ },
+      subscribe: (cb) => {
+        cb('en');
+        return { unsubscribe: () => {} };
+      },
       set: vi.fn()
     }
   };
@@ -77,7 +97,7 @@ vi.mock('$lib/i18n', () => {
 // Always import components AFTER defining mocks
 import MyComponent from './MyComponent.svelte';
 
-// Use the render function from test-utils
+// Use the simplified render function from test-utils
 import { render, cleanup } from '../../test-utils';
 
 describe('Component tests', () => {
@@ -85,9 +105,9 @@ describe('Component tests', () => {
     cleanup();
   });
 
-  it('should render correctly', () => {
+  it('should work with the test setup', () => {
     const { container } = render(MyComponent);
-    // Test assertions here
+    expect(container).toBeTruthy();
   });
 });
 ```
