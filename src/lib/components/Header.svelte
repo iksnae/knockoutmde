@@ -11,6 +11,19 @@
   function toggleMobileMenu() {
     isMobileMenuOpen = !isMobileMenuOpen;
   }
+  
+  // Close mobile menu
+  function closeMobileMenu() {
+    isMobileMenuOpen = false;
+  }
+  
+  // Handle navigation item click
+  function handleNavClick(event) {
+    // Stop propagation to prevent conflicts
+    event.stopPropagation();
+    // Close the menu
+    closeMobileMenu();
+  }
 
   // Close mobile menu when clicking outside or resizing to desktop
   onMount(() => {
@@ -18,23 +31,24 @@
       const mobileMenu = document.getElementById('mobile-menu');
       const hamburgerButton = document.getElementById('hamburger-button');
       
-      if (mobileMenu && !mobileMenu.contains(event.target) && 
+      if (isMobileMenuOpen && mobileMenu && !mobileMenu.contains(event.target) && 
           hamburgerButton && !hamburgerButton.contains(event.target)) {
-        isMobileMenuOpen = false;
+        closeMobileMenu();
       }
     };
     
     const handleResize = () => {
       if (window.innerWidth >= 768) { // 768px is md breakpoint in Tailwind
-        isMobileMenuOpen = false;
+        closeMobileMenu();
       }
     };
     
-    document.addEventListener('click', handleClickOutside);
+    // Use capture phase to ensure our handler runs first
+    document.addEventListener('click', handleClickOutside, true);
     window.addEventListener('resize', handleResize);
     
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('click', handleClickOutside, true);
       window.removeEventListener('resize', handleResize);
     };
   });
@@ -62,7 +76,7 @@
     <button 
       id="hamburger-button"
       class="md:hidden flex flex-col justify-center items-center w-8 h-8 p-1 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400 mr-2"
-      on:click={toggleMobileMenu}
+      on:click|stopPropagation={toggleMobileMenu}
       aria-label="Toggle menu"
     >
       <span class="bg-white block w-5 h-0.5 mb-1.5 {isMobileMenuOpen ? 'transform rotate-45 translate-y-2' : ''}"></span>
@@ -78,41 +92,40 @@
     <div 
       id="mobile-menu"
       class="md:hidden absolute top-16 right-0 left-0 z-50 bg-zinc-800 shadow-lg"
-      transition:slide={{ duration: 200 }}
     >
       <div class="p-4 flex flex-col space-y-3">
         <a 
           href={path('/')} 
           class="text-white hover:text-red-400 transition-colors py-2 border-b border-zinc-700"
-          on:click={() => isMobileMenuOpen = false}
+          on:click|preventDefault|stopPropagation={handleNavClick}
         >
           {$t('nav.home')}
         </a>
         <a 
           href={path('/about/')} 
           class="text-white hover:text-red-400 transition-colors py-2 border-b border-zinc-700"
-          on:click={() => isMobileMenuOpen = false}
+          on:click|preventDefault|stopPropagation={handleNavClick}
         >
           {$t('nav.about')}
         </a>
         <a 
           href={path('/collections/')} 
           class="text-white hover:text-red-400 transition-colors py-2 border-b border-zinc-700"
-          on:click={() => isMobileMenuOpen = false}
+          on:click|preventDefault|stopPropagation={handleNavClick}
         >
           {$t('nav.collections')}
         </a>
         <a 
           href={path('/custom/')} 
           class="text-white hover:text-red-400 transition-colors py-2 border-b border-zinc-700"
-          on:click={() => isMobileMenuOpen = false}
+          on:click|preventDefault|stopPropagation={handleNavClick}
         >
           {$t('nav.custom')}
         </a>
         <a 
           href={path('/contact/')} 
           class="text-white hover:text-red-400 transition-colors py-2"
-          on:click={() => isMobileMenuOpen = false}
+          on:click|preventDefault|stopPropagation={handleNavClick}
         >
           {$t('nav.contact')}
         </a>
@@ -125,15 +138,5 @@
   /* Transition animations for menu toggle */
   span {
     transition: all 0.3s ease-in-out;
-  }
-  
-  /* Animation for mobile menu */
-  :global(.slide-enter), :global(.slide-leave-to) {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  
-  :global(.slide-enter-active), :global(.slide-leave-active) {
-    transition: all 0.3s ease;
   }
 </style>
