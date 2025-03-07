@@ -3,6 +3,7 @@
   import { path } from '$lib/utils/path';
   import LanguageSwitcher from './LanguageSwitcher.svelte';
   import { onMount } from 'svelte';
+  import { goto } from '$app/navigation';
 
   // State for mobile menu
   let isMobileMenuOpen = false;
@@ -18,11 +19,17 @@
   }
   
   // Handle navigation item click
-  function handleNavClick(event) {
+  function handleNavClick(event, href) {
+    // Prevent default navigation
+    event.preventDefault();
     // Stop propagation to prevent conflicts
     event.stopPropagation();
     // Close the menu
     closeMobileMenu();
+    // Navigate programmatically after a short delay
+    setTimeout(() => {
+      window.location.href = href;
+    }, 50);
   }
 
   // Close mobile menu when clicking outside or resizing to desktop
@@ -97,35 +104,35 @@
         <a 
           href={path('/')} 
           class="text-white hover:text-red-400 transition-colors py-2 border-b border-zinc-700"
-          on:click|preventDefault|stopPropagation={handleNavClick}
+          on:click={(e) => handleNavClick(e, path('/'))}
         >
           {$t('nav.home')}
         </a>
         <a 
           href={path('/about/')} 
           class="text-white hover:text-red-400 transition-colors py-2 border-b border-zinc-700"
-          on:click|preventDefault|stopPropagation={handleNavClick}
+          on:click={(e) => handleNavClick(e, path('/about/'))}
         >
           {$t('nav.about')}
         </a>
         <a 
           href={path('/collections/')} 
           class="text-white hover:text-red-400 transition-colors py-2 border-b border-zinc-700"
-          on:click|preventDefault|stopPropagation={handleNavClick}
+          on:click={(e) => handleNavClick(e, path('/collections/'))}
         >
           {$t('nav.collections')}
         </a>
         <a 
           href={path('/custom/')} 
           class="text-white hover:text-red-400 transition-colors py-2 border-b border-zinc-700"
-          on:click|preventDefault|stopPropagation={handleNavClick}
+          on:click={(e) => handleNavClick(e, path('/custom/'))}
         >
           {$t('nav.custom')}
         </a>
         <a 
           href={path('/contact/')} 
           class="text-white hover:text-red-400 transition-colors py-2"
-          on:click|preventDefault|stopPropagation={handleNavClick}
+          on:click={(e) => handleNavClick(e, path('/contact/'))}
         >
           {$t('nav.contact')}
         </a>
