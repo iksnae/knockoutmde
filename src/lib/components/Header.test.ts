@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render } from '@testing-library/svelte-svelte5';
 import userEvent from '@testing-library/user-event';
+import Header from './Header.svelte';
 
 // Set up mocks before importing the component
 vi.mock('$app/navigation', () => ({
@@ -11,8 +11,19 @@ vi.mock('$lib/utils/path', () => ({
   path: vi.fn((url) => `/knockoutmde${url}`)
 }));
 
-// Import after mocks are defined
-import Header from './Header.svelte';
+// Custom render helper for Svelte 5 components
+function renderComponent(Component: any) {
+  // Create a container
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+
+  // Instantiate the component
+  new Component({
+    target: container
+  });
+
+  return { container };
+}
 
 describe('Header component', () => {
   beforeEach(() => {
@@ -27,10 +38,13 @@ describe('Header component', () => {
     
     // Reset scroll position
     window.dispatchEvent(new Event('scroll'));
+    
+    // Reset the DOM between tests
+    document.body.innerHTML = '';
   });
   
   it('should render the logo', () => {
-    const { container } = render(Header);
+    const { container } = renderComponent(Header);
     
     // Find logo sections by class and content
     const logoElements = container.querySelectorAll('.text-2xl, .text-lg');
@@ -46,7 +60,7 @@ describe('Header component', () => {
   });
   
   it('should render navigation links', () => {
-    const { container } = render(Header);
+    const { container } = renderComponent(Header);
     
     // Check for navigation links container
     const nav = container.querySelector('nav');
@@ -61,7 +75,7 @@ describe('Header component', () => {
     // Set viewport to mobile width
     Object.defineProperty(window, 'innerWidth', { value: 640 });
     
-    const { container } = render(Header);
+    const { container } = renderComponent(Header);
     
     // Mobile menu should not be visible
     const mobileMenu = container.querySelector('#mobile-menu');
@@ -72,7 +86,7 @@ describe('Header component', () => {
     // Set viewport to mobile width
     Object.defineProperty(window, 'innerWidth', { value: 640 });
     
-    const { container } = render(Header);
+    const { container } = renderComponent(Header);
     const user = userEvent.setup();
     
     // Find hamburger button
