@@ -1,4 +1,4 @@
-import { _ } from '$lib/i18n';
+import { t } from '$lib/i18n';
 import { get } from 'svelte/store';
 
 /**
@@ -7,8 +7,8 @@ import { get } from 'svelte/store';
  * @returns Formatted page title with app name
  */
 export function pageTitle(pageTitleKey: string): string {
-  const translatedTitle = get(_)(`meta.${pageTitleKey}`);
-  const appTitle = get(_)('app.title');
+  const translatedTitle = get(t)(`meta.${pageTitleKey}`);
+  const appTitle = get(t)('app.title');
   return `${appTitle} - ${translatedTitle}`;
 }
 
@@ -20,7 +20,7 @@ export function pageTitle(pageTitleKey: string): string {
 export function metaDescription(descriptionKey: string): string {
   // If a specific description is provided, use it, otherwise use the app description
   if (descriptionKey) {
-    return get(_)(descriptionKey);
+    return get(t)(descriptionKey);
   }
-  return get(_)('app.description');
+  return get(t)('app.description');
 }
