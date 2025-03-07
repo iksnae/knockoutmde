@@ -1,13 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { pageTitle, metaDescription } from './metadata';
 
-// Mock the translation function more simply 
+// Mock the translation function
 vi.mock('$lib/i18n', () => {
   return {
     t: {
-      subscribe: (cb: Function) => {
+      subscribe: (cb) => {
         // Simple callback that provides a mock translation function
-        cb((key: string) => {
+        cb((key) => {
           if (key === 'app.title') return 'Knockout MDE';
           if (key === 'meta.about') return 'About Us';
           if (key === 'meta.contact') return 'Contact';
@@ -22,6 +21,9 @@ vi.mock('$lib/i18n', () => {
     }
   };
 });
+
+// Import after mocks are defined
+import { pageTitle, metaDescription } from './metadata';
 
 describe('metadata utilities', () => {
   describe('pageTitle', () => {
