@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "Knock Out MDE",
-    "description": "Indumentaria de boxeo y diseño de vestuario a medida desde Medellín, Colombia"
+    "description": "Indumentaria de boxeo y diseño de vestuario a medida desde Medellín, Colombia",
+    "loading": "Cargando..."
   },
   "nav": {
     "home": "Inicio",
@@ -9,6 +10,14 @@
     "collections": "Colecciones",
     "custom": "Diseños Personalizados",
     "contact": "Contacto"
+  },
+  "meta": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "collections": "Colecciones",
+    "custom": "Diseños Personalizados",
+    "contact": "Contacto",
+    "notFound": "Página no encontrada"
   },
   "home": {
     "welcome": "Bienvenido a Knock Out MDE",
@@ -22,10 +31,127 @@
     "heritage": "Herencia Colombiana",
     "heritageText": "Nuestros diseños se inspiran en la rica herencia cultural de Colombia y la vibrante escena artística de Medellín."
   },
+  "collections": {
+    "title": "Colecciones",
+    "description": "Explora nuestras colecciones de ropa de boxeo premium, mostrando la mejor artesanía y diseño desde Medellín, Colombia.",
+    "featured": "Colecciones Destacadas",
+    "accessories": "Accesorios y Equipo de Entrenamiento",
+    "customTitle": "Crea tu Diseño Personalizado",
+    "customDescription": "¿No encuentras exactamente lo que buscas? Permítenos crear algo único solo para ti.",
+    "customCta": "Servicios de Diseño Personalizado",
+    "championship": {
+      "title": "Serie Campeonato",
+      "description": "Ropa de nivel profesional diseñada para campeones. Con materiales premium y diseños audaces para luchadores que exigen excelencia.",
+      "priceRange": "$180 - $450",
+      "viewCollection": "Ver Colección"
+    },
+    "urban": {
+      "title": "Luchador Urbano",
+      "description": "Diseños inspirados en lo urbano con estilo colombiano. Gráficos audaces y cortes cómodos hacen de esta colección perfecta para entrenamiento y ropa casual.",
+      "priceRange": "$75 - $220",
+      "viewCollection": "Ver Colección"
+    },
+    "custom": {
+      "title": "Exhibición Personalizada",
+      "description": "Diseños únicos creados para luchadores de élite. Inspírate en nuestras creaciones personalizadas previas para tu propio diseño único.",
+      "priceRange": "Precio Personalizado",
+      "viewCollection": "Ver Colección"
+    },
+    "accessories": {
+      "gloves": {
+        "title": "Guantes de Boxeo",
+        "description": "Guantes de nivel profesional con diseños personalizados",
+        "price": "Desde $120"
+      },
+      "wraps": {
+        "title": "Vendas para Manos",
+        "description": "Vendas de algodón premium con diseños distintivos",
+        "price": "Desde $25"
+      },
+      "shorts": {
+        "title": "Pantalones de Entrenamiento",
+        "description": "Pantalones ligeros y duraderos para sesiones de entrenamiento",
+        "price": "Desde $60"
+      },
+      "robes": {
+        "title": "Batas y Equipo de Entrada",
+        "description": "Haz una declaración antes de que comience la pelea",
+        "price": "Desde $150"
+      }
+    },
+    "imagePlaceholder": "Imagen Próximamente"
+  },
+  "custom": {
+    "title": "Diseños Personalizados",
+    "description": "Crea indumentaria de boxeo única que refleje tu personalidad y estilo como luchador.",
+    "process": "Nuestro Proceso",
+    "consultation": {
+      "title": "Consulta",
+      "description": "Discutimos tu visión, estilo personal y requisitos específicos para tu equipo de boxeo."
+    },
+    "design": {
+      "title": "Diseño",
+      "description": "Nuestros diseñadores crean conceptos basados en tus ideas, incorporando elementos colombianos si lo deseas."
+    },
+    "refinement": {
+      "title": "Refinamiento",
+      "description": "Trabajamos contigo para perfeccionar el diseño hasta que sea exactamente lo que imaginas."
+    },
+    "crafting": {
+      "title": "Fabricación",
+      "description": "Nuestros artesanos crean meticulosamente tu equipo con los mejores materiales y técnicas."
+    },
+    "delivery": {
+      "title": "Entrega",
+      "description": "Tu equipo personalizado es entregado, listo para hacer una declaración dentro y fuera del ring."
+    },
+    "cta": "Iniciar Mi Diseño Personalizado"
+  },
+  "contact": {
+    "title": "Contacto",
+    "description": "¿Tienes preguntas o estás listo para comenzar tu proyecto personalizado? Contáctanos hoy.",
+    "form": {
+      "name": "Nombre Completo",
+      "email": "Correo Electrónico",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "submit": "Enviar Mensaje"
+    },
+    "visit": "Visítanos",
+    "address": {
+      "line1": "Calle 10 #30-50",
+      "line2": "El Poblado, Medellín",
+      "line3": "Colombia"
+    },
+    "hours": {
+      "title": "Horario de Atención",
+      "weekdays": "Lunes - Viernes: 10:00 - 19:00",
+      "saturday": "Sábado: 10:00 - 16:00",
+      "sunday": "Domingo: Cerrado"
+    },
+    "connect": "Conéctate",
+    "phone": "Teléfono: +57 300 123 4567",
+    "email": "Correo: contact@knockoutmde.com",
+    "instagram": "Instagram: @knockoutmde"
+  },
+  "footer": {
+    "description": "Indumentaria de boxeo premium y diseño de vestuario desde Medellín, Colombia.",
+    "connect": "Conéctate",
+    "instagram": "Instagram: @knockoutmde",
+    "email": "Correo: contact@knockoutmde.com",
+    "whatsapp": "WhatsApp: +57 300 123 4567",
+    "visitUs": "Visítanos",
+    "allRights": "Todos los derechos reservados."
+  },
+  "error": {
+    "notFound": "Lo sentimos, no pudimos encontrar lo que estás buscando."
+  },
   "buttons": {
     "learnMore": "Conocer Más",
     "getStarted": "Ver Colecciones",
     "contact": "Contáctanos",
-    "customize": "Pedido Personalizado"
+    "customize": "Pedido Personalizado",
+    "viewCollection": "Ver Colección",
+    "backToHome": "Volver al Inicio"
   }
 }

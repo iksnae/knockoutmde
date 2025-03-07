@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { locale, isLocaleLoaded, startClient, defaultLocale } from '$lib/i18n';
+  import { locale, isLocaleLoaded, startClient, defaultLocale, t } from '$lib/i18n';
   import '../app.css';
   import Header from '$lib/components/Header.svelte';
   import Footer from '$lib/components/Footer.svelte';
@@ -24,6 +24,6 @@
   </div>
 {:else}
   <div class="flex items-center justify-center min-h-screen bg-zinc-900 text-white">
-    <div class="text-xl">Cargando...</div>
+    <div class="text-xl">{$t('app.loading')}</div>
   </div>
 {/if}

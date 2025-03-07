@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "Knock Out MDE",
-    "description": "Bespoke boxing apparel and costume design from Medellín, Colombia"
+    "description": "Bespoke boxing apparel and costume design from Medellín, Colombia",
+    "loading": "Loading..."
   },
   "nav": {
     "home": "Home",
@@ -9,6 +10,14 @@
     "collections": "Collections",
     "custom": "Custom Designs",
     "contact": "Contact"
+  },
+  "meta": {
+    "home": "Home",
+    "about": "About",
+    "collections": "Collections",
+    "custom": "Custom Designs",
+    "contact": "Contact",
+    "notFound": "Page Not Found"
   },
   "home": {
     "welcome": "Welcome to Knock Out MDE",
@@ -22,10 +31,127 @@
     "heritage": "Colombian Heritage",
     "heritageText": "Our designs draw inspiration from Colombia's rich cultural heritage and Medellín's vibrant art scene."
   },
+  "collections": {
+    "title": "Collections",
+    "description": "Explore our premium boxing apparel collections, showcasing the finest craftsmanship and design from Medellín, Colombia.",
+    "featured": "Featured Collections",
+    "accessories": "Accessories & Training Gear",
+    "customTitle": "Create Your Custom Design",
+    "customDescription": "Can't find exactly what you're looking for? Let us create something unique just for you.",
+    "customCta": "Custom Design Services",
+    "championship": {
+      "title": "Championship Series",
+      "description": "Professional-grade apparel designed for champions. Featuring premium materials and bold designs for fighters who demand excellence.",
+      "priceRange": "$180 - $450",
+      "viewCollection": "View Collection"
+    },
+    "urban": {
+      "title": "Urban Fighter",
+      "description": "Street-inspired designs with Colombian urban flair. Bold graphics and comfortable cuts make this collection perfect for training and streetwear.",
+      "priceRange": "$75 - $220",
+      "viewCollection": "View Collection"
+    },
+    "custom": {
+      "title": "Custom Showcase",
+      "description": "One-of-a-kind designs created for elite fighters. Get inspired by our previous custom creations for your own unique design.",
+      "priceRange": "Custom Pricing",
+      "viewCollection": "View Collection"
+    },
+    "accessories": {
+      "gloves": {
+        "title": "Boxing Gloves",
+        "description": "Professional-grade gloves with custom designs",
+        "price": "From $120"
+      },
+      "wraps": {
+        "title": "Hand Wraps",
+        "description": "Premium cotton hand wraps with signature designs",
+        "price": "From $25"
+      },
+      "shorts": {
+        "title": "Training Shorts",
+        "description": "Lightweight, durable shorts for training sessions",
+        "price": "From $60"
+      },
+      "robes": {
+        "title": "Robes & Walkout Gear",
+        "description": "Make a statement before the fight even begins",
+        "price": "From $150"
+      }
+    },
+    "imagePlaceholder": "Image Coming Soon"
+  },
+  "custom": {
+    "title": "Custom Designs",
+    "description": "Create unique boxing apparel that reflects your personality and style as a fighter.",
+    "process": "Our Process",
+    "consultation": {
+      "title": "Consultation",
+      "description": "We discuss your vision, personal style, and specific requirements for your boxing gear."
+    },
+    "design": {
+      "title": "Design",
+      "description": "Our designers create concepts based on your ideas, incorporating Colombian elements if desired."
+    },
+    "refinement": {
+      "title": "Refinement",
+      "description": "We work with you to refine the design until it's exactly what you envision."
+    },
+    "crafting": {
+      "title": "Crafting",
+      "description": "Our artisans meticulously create your gear using the finest materials and techniques."
+    },
+    "delivery": {
+      "title": "Delivery",
+      "description": "Your custom gear is delivered, ready to make a statement inside and outside the ring."
+    },
+    "cta": "Start My Custom Design"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Have questions or ready to start your custom project? Get in touch with us today.",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message"
+    },
+    "visit": "Visit Us",
+    "address": {
+      "line1": "Calle 10 #30-50",
+      "line2": "El Poblado, Medellín",
+      "line3": "Colombia"
+    },
+    "hours": {
+      "title": "Business Hours",
+      "weekdays": "Monday - Friday: 10:00 - 19:00",
+      "saturday": "Saturday: 10:00 - 16:00",
+      "sunday": "Sunday: Closed"
+    },
+    "connect": "Connect",
+    "phone": "Phone: +57 300 123 4567",
+    "email": "Email: contact@knockoutmde.com",
+    "instagram": "Instagram: @knockoutmde"
+  },
+  "footer": {
+    "description": "Premium boxing apparel and costume design from Medellín, Colombia.",
+    "connect": "Connect",
+    "instagram": "Instagram: @knockoutmde",
+    "email": "Email: contact@knockoutmde.com",
+    "whatsapp": "WhatsApp: +57 300 123 4567",
+    "visitUs": "Visit Us",
+    "allRights": "All rights reserved."
+  },
+  "error": {
+    "notFound": "Sorry, we couldn't find what you're looking for."
+  },
   "buttons": {
     "learnMore": "Learn More",
     "getStarted": "View Collections",
     "contact": "Get in Touch",
-    "customize": "Custom Order"
+    "customize": "Custom Order",
+    "viewCollection": "View Collection",
+    "backToHome": "Back to Home"
   }
 }
